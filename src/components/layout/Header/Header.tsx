@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import { Btn } from './common/Btn';
+import { Btn } from '../common/index';
 
 export const Header = () => (
   <header>
