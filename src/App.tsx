@@ -1,20 +1,12 @@
 import React from 'react';
-import './App.css';
+import { Header } from './components/layout/Header';
+import { Map } from './components/layout/Map/Map';
 
 export const App = () => {
   return (
     <>
-      <header>
-        <h1>
-          <strong>CRAG </strong> finder
-        </h1>
-        <button>Add crag to climbing community</button>
-        <div className="search">
-          <input type="text" />
-          <button>Search for crags</button>
-        </div>
-      </header>
-      <div className="map">************</div>
+      <Header />
+      <Map />
     </>
   );
 };
