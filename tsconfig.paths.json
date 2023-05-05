@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "types": ["../crag_finder_backend/types"]
+    }
+  }
+}
