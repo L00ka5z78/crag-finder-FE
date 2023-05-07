@@ -21,8 +21,9 @@ export const Map = () => {
 
         <Marker position={[64.48945, 10.81913]}>
           <Popup>
-            <h2>Krkavka</h2>
-            <p>One of the best crags in Czech Republic</p>
+            <h2>Flatanger Cave</h2>
+            <p>Home of the hardest routes in the world</p>
+            <p>World class granite</p>
           </Popup>
         </Marker>
       </MapContainer>
