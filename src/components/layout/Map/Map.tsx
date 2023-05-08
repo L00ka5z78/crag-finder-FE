@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import { SearchContext } from '../../../context/search.context';
 import '../../../utils/fix-map-icon';
@@ -7,6 +7,10 @@ import 'leaflet/dist/leaflet.css';
 
 export const Map = () => {
   const { search } = useContext(SearchContext);
+
+  useEffect(() => {
+    console.log('send request to search for', search);
+  }, [search]);
 
   return (
     <div className="map">
