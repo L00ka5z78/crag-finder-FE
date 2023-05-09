@@ -5,6 +5,7 @@ import { SimpleCragEntity } from 'types';
 import '../../../utils/fix-map-icon';
 import './Map.css';
 import 'leaflet/dist/leaflet.css';
+import { SingleCrag } from '../../SingleCrag/SingleCrag';
 
 export const Map = () => {
   const { search } = useContext(SearchContext);
@@ -12,16 +13,12 @@ export const Map = () => {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch('http://localhost:3001/crag/search');
+      const res = await fetch(`http://localhost:3001/crag/search/${search}`);
       const data = await res.json();
 
       setCrags(data);
     })();
-  }, []);
-
-  // useEffect(() => {
-  //   console.log('send request to search for', search);
-  // }, [search]);
+  }, [search]);
 
   return (
     <div className="map">
@@ -34,23 +31,11 @@ export const Map = () => {
 
         {crags.map((crag) => (
           <Marker key={crag.id} position={[crag.lat, crag.lon]}>
-            <Popup>{crag.id}</Popup>
+            <Popup>
+              <SingleCrag id={crag.id} />
+            </Popup>
           </Marker>
         ))}
-        {/* <Marker position={[50.6311796, 15.260342]}>
-          <Popup>
-            <h2>Krkavka</h2>
-            <p>One of the best crags in Czech Republic</p>
-          </Popup>
-        </Marker>
-
-        <Marker position={[64.48945, 10.81913]}>
-          <Popup>
-            <h2>Flatanger Cave</h2>
-            <p>Home of the hardest routes in the world</p>
-            <p>World class granite</p>
-          </Popup>
-        </Marker> */}
       </MapContainer>
     </div>
   );
