@@ -8,16 +8,14 @@ import { AddForm } from './components/AddForm/AddForm';
 export const App = () => {
   const [search, setSearch] = useState('');
   return (
-    <>
-      <SearchContext.Provider value={{ search, setSearch }}>
-        <div className="wrapper">
-          <Header />
-          <Routes>
-            <Route path="/" element={<Map />} />
-            <Route path="/add" element={<AddForm />} />
-          </Routes>
-        </div>
-      </SearchContext.Provider>
-    </>
+    <SearchContext.Provider value={{ search, setSearch }}>
+      <div className="wrapper">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Map />} />
+          <Route path="/add" element={<AddForm />} />
+        </Routes>
+      </div>
+    </SearchContext.Provider>
   );
 };
