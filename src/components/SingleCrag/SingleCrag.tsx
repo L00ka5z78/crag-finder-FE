@@ -21,5 +21,17 @@ export const SingleCrag = (props: Props) => {
     return <p>Loading crags...</p>;
   }
 
-  return <h4>{crag.name}</h4>;
+  //   return <h4>{crag.name}</h4>;
+
+  return (
+    <>
+      <h2>{crag.name}</h2>
+      <p>{crag.description}</p>
+      {/* {!!crag.routes && <p>{crag.routes} routes</p>} */}
+      <hr />
+      <a href={crag.url} target="blank" rel="noreferrer">
+        Open link
+      </a>
+    </>
+  );
 };
