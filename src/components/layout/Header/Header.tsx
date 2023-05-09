@@ -1,9 +1,4 @@
-import React, {
-  FormEvent,
-  FormEventHandler,
-  useContext,
-  useState,
-} from 'react';
+import React, { FormEvent, useContext, useState } from 'react';
 import './Header.css';
 import { Btn } from '../common/index';
 import { SearchContext } from '../../../context/search.context';
@@ -22,7 +17,7 @@ export const Header = () => {
       <h1>
         <strong>CRAG </strong> finder
       </h1>
-      <Btn text="Add crag to climbing community"></Btn>
+      <Btn text="Add New Crag"></Btn>
       <form className="search" onSubmit={setStateFromLocalState}>
         <input
           type="text"
