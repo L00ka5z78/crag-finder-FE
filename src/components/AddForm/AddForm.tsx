@@ -15,8 +15,19 @@ export const AddForm = () => {
     accomodation: '',
   });
 
-  const saveCrag = (event: FormEvent): void => {
+  const saveCrag = async (event: FormEvent) => {
     event.preventDefault();
+
+    const geoRes = await fetch(
+      `https://nominatim.openstreetmap.org/search?=Wolnego%204,%20Katowice&format=json&q=${encodeURIComponent(
+        form.accomodation
+      )}`
+    );
+    const geoData = await geoRes.json();
+    const lat = parseFloat(geoData[0].lat);
+    const lon = parseFloat(geoData[0].lon);
+
+    console.log({ lat, lon });
   };
 
   const updateForm = (key: string, value: any) => {
@@ -105,7 +116,7 @@ export const AddForm = () => {
         <label>
           Accomodation URL address (optional): <br />
           <input
-            type="url"
+            type="text"
             name="accomodation"
             maxLength={99}
             value={form.accomodation}
@@ -113,6 +124,7 @@ export const AddForm = () => {
           />
         </label>
       </p>
+
       <Btn text="Save" />
     </form>
   );
