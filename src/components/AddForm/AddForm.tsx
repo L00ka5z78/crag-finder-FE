@@ -110,7 +110,7 @@ export const AddForm = () => {
       </p>
 
       <p>
-        <label>
+        {/* <label>
           Crags position (GPS coordinates): <br />
           <input
             type="number"
@@ -130,12 +130,12 @@ export const AddForm = () => {
             onChange={(e) => updateForm('lon', e.target.value)}
           />
           <small> * Longitude</small>
-        </label>
+        </label> */}
       </p>
 
       <p>
         <label>
-          Accomodation URL address (optional): <br />
+          Accomodation address: <br />
           <input
             type="text"
             name="accomodation"
