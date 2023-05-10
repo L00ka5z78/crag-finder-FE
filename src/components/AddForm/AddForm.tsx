@@ -6,7 +6,7 @@ import { geocode } from '../../utils/geo-coding';
 
 export const AddForm = () => {
   const [loading, setLoading] = useState(false);
-
+  const [id, setId] = useState('');
   const [form, setForm] = useState({
     name: '',
     description: '',
@@ -35,7 +35,8 @@ export const AddForm = () => {
           lon,
         }),
       });
-      console.log(res);
+      const data = await res.json();
+      setId(data.id);
     } finally {
       setLoading(false);
     }
@@ -50,6 +51,13 @@ export const AddForm = () => {
 
   if (loading) {
     return <h2>Adding crag to our database...</h2>;
+  }
+  if (id) {
+    return (
+      <h2>
+        "{form.name}" created crag with ID: {id}
+      </h2>
+    );
   }
 
   return (
@@ -110,32 +118,8 @@ export const AddForm = () => {
       </p>
 
       <p>
-        {/* <label>
-          Crags position (GPS coordinates): <br />
-          <input
-            type="number"
-            name="lat"
-            required
-            maxLength={99}
-            value={form.lat}
-            onChange={(e) => updateForm('lat', e.target.value)}
-          />
-          <small> * Latitude</small>
-          <input
-            type="number"
-            name="lon"
-            required
-            maxLength={99}
-            value={form.lon}
-            onChange={(e) => updateForm('lon', e.target.value)}
-          />
-          <small> * Longitude</small>
-        </label> */}
-      </p>
-
-      <p>
         <label>
-          Accomodation address: <br />
+          Parking address: <br />
           <input
             type="text"
             name="accomodation"
