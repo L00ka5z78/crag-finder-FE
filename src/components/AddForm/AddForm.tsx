@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react';
 
 import './AddForm.css';
 import { Btn } from '../layout/common';
+import { geocode } from '../../utils/geo-coding';
 
 export const AddForm = () => {
   const [loading, setLoading] = useState(false);
@@ -11,23 +12,33 @@ export const AddForm = () => {
     description: '',
     routes: 0,
     url: '',
-    position: '',
+    lat: 0,
+    lon: 0,
     accomodation: '',
   });
 
   const saveCrag = async (event: FormEvent) => {
     event.preventDefault();
+    setLoading(true);
 
-    const geoRes = await fetch(
-      `https://nominatim.openstreetmap.org/search?=Wolnego%204,%20Katowice&format=json&q=${encodeURIComponent(
-        form.accomodation
-      )}`
-    );
-    const geoData = await geoRes.json();
-    const lat = parseFloat(geoData[0].lat);
-    const lon = parseFloat(geoData[0].lon);
-
-    console.log({ lat, lon });
+    // console.log({ lat, lon });
+    try {
+      const { lat, lon } = await geocode(form.accomodation);
+      const res = await fetch(`http://localhost:3001/crag`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...form,
+          lat,
+          lon,
+        }),
+      });
+      console.log(res);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const updateForm = (key: string, value: any) => {
@@ -102,13 +113,23 @@ export const AddForm = () => {
         <label>
           Crags position (GPS coordinates): <br />
           <input
-            type="text"
-            name="position"
+            type="number"
+            name="lat"
             required
             maxLength={99}
-            value={form.position}
-            onChange={(e) => updateForm('position', e.target.value)}
+            value={form.lat}
+            onChange={(e) => updateForm('lat', e.target.value)}
           />
+          <small> * Latitude</small>
+          <input
+            type="number"
+            name="lon"
+            required
+            maxLength={99}
+            value={form.lon}
+            onChange={(e) => updateForm('lon', e.target.value)}
+          />
+          <small> * Longitude</small>
         </label>
       </p>
 
