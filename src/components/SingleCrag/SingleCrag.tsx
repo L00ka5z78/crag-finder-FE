@@ -27,7 +27,7 @@ export const SingleCrag = (props: Props) => {
     <>
       <h2>{crag.name}</h2>
       <p>{crag.description}</p>
-      {/* {!!crag.routes && <p>{crag.routes} routes</p>} */}
+      {!!crag.routes && <p>{crag.routes} routes</p>}
       <hr />
       <a href={crag.url} target="blank" rel="noreferrer">
         Open link

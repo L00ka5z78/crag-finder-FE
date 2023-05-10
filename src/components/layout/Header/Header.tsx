@@ -17,7 +17,7 @@ export const Header = () => {
       <h1>
         <strong>CRAG </strong> finder
       </h1>
-      <Btn text="Add New Crag"></Btn>
+      <Btn to="/add" text="Add New Crag" />
       <form className="search" onSubmit={setStateFromLocalState}>
         <input
           type="text"
