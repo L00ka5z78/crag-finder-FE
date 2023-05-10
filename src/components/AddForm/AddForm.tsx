@@ -13,6 +13,41 @@ export const AddForm = () => {
           <input type="text" name="name" required maxLength={99} />
         </label>
       </p>
+
+      <p>
+        <label>
+          Routes: <br />
+          <input type="number" name="name" required maxLength={99} />
+        </label>
+      </p>
+
+      <p>
+        <label>
+          Description: <br />
+          <input type="text" name="name" required maxLength={99} />
+        </label>
+      </p>
+
+      <p>
+        <label>
+          Link: <br />
+          <input type="text" name="name" required maxLength={99} />
+        </label>
+      </p>
+
+      <p>
+        <label>
+          Latitude: <br />
+          <input type="text" name="name" required maxLength={99} />
+        </label>
+      </p>
+
+      <p>
+        <label>
+          Longitude: <br />
+          <input type="text" name="name" required maxLength={99} />
+        </label>
+      </p>
     </form>
   );
 };
