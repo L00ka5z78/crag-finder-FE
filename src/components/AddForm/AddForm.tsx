@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from 'react';
 
 import './AddForm.css';
 import { Btn } from '../layout/common';
-import { geocode } from '../../utils/geoApi/geo-coding';
+import { geocodeRes } from '../../utils/geoApi/geo-coding';
 
 export const AddForm = () => {
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ export const AddForm = () => {
 
     // console.log({ lat, lon });
     try {
-      const { lat, lon } = await geocode(form.accomodation);
+      const { lat, lon } = await geocodeRes(form.accomodation);
       const res = await fetch(`http://localhost:3001/crag`, {
         method: 'POST',
         headers: {
