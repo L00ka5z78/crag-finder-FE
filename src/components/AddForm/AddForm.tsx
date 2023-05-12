@@ -2,32 +2,44 @@ import React, { FormEvent, useState } from 'react';
 
 import './AddForm.css';
 import { Btn } from '../layout/common';
+import { geocode } from '../../utils/geo-coding';
 
 export const AddForm = () => {
   const [loading, setLoading] = useState(false);
-
+  const [id, setId] = useState('');
   const [form, setForm] = useState({
     name: '',
     description: '',
     routes: 0,
     url: '',
-    position: '',
+    lat: 0,
+    lon: 0,
     accomodation: '',
   });
 
   const saveCrag = async (event: FormEvent) => {
     event.preventDefault();
+    setLoading(true);
 
-    const geoRes = await fetch(
-      `https://nominatim.openstreetmap.org/search?=Wolnego%204,%20Katowice&format=json&q=${encodeURIComponent(
-        form.accomodation
-      )}`
-    );
-    const geoData = await geoRes.json();
-    const lat = parseFloat(geoData[0].lat);
-    const lon = parseFloat(geoData[0].lon);
-
-    console.log({ lat, lon });
+    // console.log({ lat, lon });
+    try {
+      const { lat, lon } = await geocode(form.accomodation);
+      const res = await fetch(`http://localhost:3001/crag`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...form,
+          lat,
+          lon,
+        }),
+      });
+      const data = await res.json();
+      setId(data.id);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const updateForm = (key: string, value: any) => {
@@ -39,6 +51,13 @@ export const AddForm = () => {
 
   if (loading) {
     return <h2>Adding crag to our database...</h2>;
+  }
+  if (id) {
+    return (
+      <h2>
+        "{form.name}" created crag with ID: {id}
+      </h2>
+    );
   }
 
   return (
@@ -100,21 +119,7 @@ export const AddForm = () => {
 
       <p>
         <label>
-          Crags position (GPS coordinates): <br />
-          <input
-            type="text"
-            name="position"
-            required
-            maxLength={99}
-            value={form.position}
-            onChange={(e) => updateForm('position', e.target.value)}
-          />
-        </label>
-      </p>
-
-      <p>
-        <label>
-          Accomodation URL address (optional): <br />
+          Parking address: <br />
           <input
             type="text"
             name="accomodation"
