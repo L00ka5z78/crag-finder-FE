@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from 'react';
 
 import './AddForm.css';
 import { Btn } from '../layout/common';
-import { geocode } from '../../utils/geo-coding';
+import { geocode } from '../../utils/geoApi/geo-coding';
 
 export const AddForm = () => {
   const [loading, setLoading] = useState(false);
