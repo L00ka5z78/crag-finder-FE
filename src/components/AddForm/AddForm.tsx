@@ -3,7 +3,7 @@ import React, { FormEvent, useState } from 'react';
 import './AddForm.css';
 import { Btn, Input } from '../layout/common';
 import { geocodeRes } from '../../utils/geoApi/geo-coding';
-import { addCragResponse } from 'src/utils/cragData/addCragResponse';
+import { addCragResponse } from '../../utils/cragData/addCragResponse';
 
 interface Props {
   setId: React.Dispatch<React.SetStateAction<string>>;
@@ -78,76 +78,85 @@ export const AddForm = ({ setId, closeForm }: Props) => {
   // }
 
   return (
-    <form className="add-form" onSubmit={saveCrag}>
-      <h1>Add new crag</h1>
-      <p>
-        <label>
-          Name: <br />
-          <input
-            type="text"
+    <>
+      <form className="add-form" onSubmit={saveCrag}>
+        <h1>Add new crag</h1>
+        <div className="formBox">
+          <label className="label" htmlFor="name">
+            Name:
+          </label>
+          <Input
+            className="input"
+            // type="text"
             name="name"
+            id="name"
             required
             maxLength={99}
             value={form.name}
             onChange={(e) => updateForm('name', e.target.value)}
           />
-        </label>
-      </p>
+        </div>
 
-      <p>
-        <label>
-          Description: <br />
+        <div className="formBox">
+          <label className="label" htmlFor="description">
+            Description:
+          </label>
           <textarea
+            className="textarea"
             name="description"
+            id="description"
             required
             maxLength={999}
             value={form.description}
             onChange={(e) => updateForm('description', e.target.value)}
           />{' '}
-        </label>
-      </p>
-      <p>
-        <label>
-          Routes count: <br />
-          <input
+        </div>
+        <div className="formBox">
+          <label className="label" htmlFor="routes">
+            Routes count:{' '}
+          </label>
+          <Input
             type="number"
             name="routes"
+            id="routes"
             required
             maxLength={99}
             value={form.routes}
             onChange={(e) => updateForm('routes', Number(e.target.value))}
           />
           <small> * Leave zero in that field, if crag has no routes</small>
-        </label>
-      </p>
+        </div>
 
-      <p>
-        <label>
-          Crags URL address (if exists): <br />
-          <input
+        <div className="formBox">
+          <label className="label" htmlFor="url">
+            Crags URL address (if exists):{' '}
+          </label>
+          <Input
             type="url"
             name="url"
+            id="url"
             maxLength={99}
             value={form.url}
             onChange={(e) => updateForm('url', e.target.value)}
           />
-        </label>
-      </p>
+        </div>
 
-      <p>
-        <label>
-          Parking address: <br />
-          <input
-            type="text"
+        <div className="formBox">
+          <label className="label" htmlFor="accomodation">
+            Parking address:{' '}
+          </label>
+          <Input
+            // type="text"
             name="accomodation"
+            id="accomodation"
             maxLength={99}
             value={form.accomodation}
             onChange={(e) => updateForm('accomodation', e.target.value)}
           />
-        </label>
-      </p>
+        </div>
 
-      <Btn text="Save" />
-    </form>
+        <Btn text="Save" />
+      </form>
+    </>
   );
 };
