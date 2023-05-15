@@ -36,16 +36,16 @@ export const Header = () => {
   return (
     <header>
       <h1>
-        <strong>Mega </strong>Ogłoszenia
+        <strong>CRAG </strong>finder
       </h1>
-      <Btn onClick={openAddForm}>Dodaj ogłoszenie</Btn>
+      <Btn onClick={openAddForm}>Add New Crag</Btn>
       <form className="search" onSubmit={setStateFromLocalState}>
         <Input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />{' '}
-        <Btn>Szukaj</Btn>
+        <Btn>Search for crags</Btn>
       </form>
     </header>
   );

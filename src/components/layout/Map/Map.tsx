@@ -1,24 +1,32 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import { SearchContext } from '../../../context/search.context';
-import { SimpleCragEntity } from 'types';
+import { useSearch } from '../../../context/search.context';
+import { GetCragListResponse } from 'types';
 import '../../../utils/fix-map-icon';
 import './Map.css';
 import 'leaflet/dist/leaflet.css';
 import { SingleCrag } from '../../SingleCrag/SingleCrag';
+import { useAddFormModal, useMessageModal } from 'src/context';
 
 export const Map = () => {
-  const { search } = useContext(SearchContext);
-  const [crags, setCrags] = useState<SimpleCragEntity[]>([]);
+  const { search } = useSearch();
+
+  const { messageModal, closeMessageModal, openMessageModal } =
+    useMessageModal();
+  const { addFormModalIsOpen, closeAddFormModal } = useAddFormModal();
+
+  // const [crags, setCrags] = useState<SimpleCragEntity[]>([]);
+  const [crags, setCrags] = useState<GetCragListResponse>([]);
+  const [id, setId] = useState<string>('');
 
   useEffect(() => {
     (async () => {
-      const res = await fetch(`http://localhost:3001/crag/search/${search}`);
+      const res = await searchCragResponse(search);
       const data = await res.json();
 
       setCrags(data);
     })();
-  }, [search]);
+  }, [search, id]);
 
   return (
     <div className="map">
