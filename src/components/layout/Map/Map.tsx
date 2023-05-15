@@ -9,7 +9,7 @@ import { SingleCrag } from '../../SingleCrag/SingleCrag';
 import { useAddFormModal, useMessageModal } from '../../../context';
 import { searchCragResponse } from '../../../utils';
 import { AddForm } from '../../AddForm';
-import { MainModal } from '../../modals';
+import { MessageModal, MainModal } from '../../modals';
 
 export const Map = () => {
   const { search } = useSearch();
@@ -45,8 +45,18 @@ export const Map = () => {
         <AddForm setId={setId} closeForm={closeAddFormModal} />
       </MainModal>
 
-      {/* <h1>Search for: {search}</h1> */}
-      <MapContainer center={[50.6311796, 15.260342]} zoom={13}>
+      <MessageModal
+        isOpen={messageModal.isOpen}
+        closeModal={closeMessageModal}
+        message={messageModal.message}
+        isErrorMessage={messageModal.isError}
+      />
+
+      <MapContainer
+        className="leafletContainer"
+        center={[50.6311796, 15.260342]}
+        zoom={13}
+      >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy; <a href='https://www.openstreetmap.org/opyright'>OpenStreetMap</a> & contributors"
