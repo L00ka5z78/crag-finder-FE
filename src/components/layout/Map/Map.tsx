@@ -7,6 +7,7 @@ import './Map.css';
 import 'leaflet/dist/leaflet.css';
 import { SingleCrag } from '../../SingleCrag/SingleCrag';
 import { useAddFormModal, useMessageModal } from 'src/context';
+import { searchCragResponse } from 'src/utils/cragData';
 
 export const Map = () => {
   const { search } = useSearch();
@@ -22,9 +23,17 @@ export const Map = () => {
   useEffect(() => {
     (async () => {
       const res = await searchCragResponse(search);
-      const data = await res.json();
 
-      setCrags(data);
+      if (res.ok && res.data) {
+        setCrags(res.data);
+      } else {
+        openMessageModal(
+          res.error ? res.error : 'Unknown error occurred...',
+          true
+        );
+      }
+      // const data = await res.json();
+      // setCrags(data);
     })();
   }, [search, id]);
 
