@@ -4,6 +4,7 @@ import './AddForm.css';
 import { Btn, Input } from '../layout/common';
 import { geocodeRes } from '../../utils/geoApi/geo-coding';
 import { addCragResponse } from '../../utils/cragData/addCragResponse';
+import { useMessageModal } from '../../context';
 
 interface Props {
   setId: React.Dispatch<React.SetStateAction<string>>;
@@ -22,8 +23,9 @@ export const AddForm = ({ setId, closeForm }: Props) => {
     lon: 0,
     accomodation: '',
   });
+  const { openMessageModal } = useMessageModal();
 
-  const saveCrag = async (event: FormEvent) => {
+  const saveCrag = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
 
@@ -33,10 +35,27 @@ export const AddForm = ({ setId, closeForm }: Props) => {
       if (resultGeocoding.ok && resultGeocoding.data) {
         const { lat, lon } = resultGeocoding.data;
         const result = await addCragResponse({ ...form, lat, lon });
+
+        if (result.ok && result.data) {
+          setId(result.data.id);
+          openMessageModal(
+            `Crag ${form.name} has been created and added to our community with ID ${result.data.id}`
+          );
+        } else {
+          openMessageModal(
+            result.error ? result.error : 'Unknown error...',
+            true
+          );
+        }
       } else {
+        console.log(
+          resultGeocoding.error ? resultGeocoding.error : 'Unknown error...',
+          true
+        );
       }
     } finally {
       setLoading(false);
+      closeForm();
     }
 
     //   try {
