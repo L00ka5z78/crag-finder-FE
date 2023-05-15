@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Header } from './components/layout/Header/Header';
 import { Map } from './components/layout/Map/Map';
 import { Outlet, Route, Routes } from 'react-router-dom';
-import { AddForm } from './components/AddForm/AddForm';
 import {
   AddFormModalContextProvider,
   MessageModalContextProvider,
