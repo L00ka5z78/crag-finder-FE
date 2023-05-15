@@ -13,7 +13,6 @@ interface Props {
 
 export const AddForm = ({ setId, closeForm }: Props) => {
   const [loading, setLoading] = useState(false);
-  // const [id, setId] = useState('');
   const [form, setForm] = useState({
     name: '',
     description: '',
@@ -35,6 +34,7 @@ export const AddForm = ({ setId, closeForm }: Props) => {
       if (resultGeocoding.ok && resultGeocoding.data) {
         const { lat, lon } = resultGeocoding.data;
         const result = await addCragResponse({ ...form, lat, lon });
+        console.log(result);
 
         if (result.ok && result.data) {
           setId(result.data.id);
@@ -57,28 +57,9 @@ export const AddForm = ({ setId, closeForm }: Props) => {
       setLoading(false);
       closeForm();
     }
-
-    //   try {
-    //     const { lat, lon } = await geocodeRes(form.accomodation);
-    //     const res = await fetch(`http://localhost:3001/crag`, {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify({
-    //         ...form,
-    //         lat,
-    //         lon,
-    //       }),
-    //     });
-    //     const data = await res.json();
-    //     setId(data.id);
-    //   } finally {
-    //     setLoading(false);
-    //   }
   };
 
-  const updateForm = (key: string, value: any) => {
+  const updateForm = (key: string, value: string | number) => {
     setForm((form) => ({
       ...form,
       [key]: value,
@@ -88,13 +69,6 @@ export const AddForm = ({ setId, closeForm }: Props) => {
   if (loading) {
     return <h2>Adding crag to our database...</h2>;
   }
-  // if (id) {
-  //   return (
-  //     <h2>
-  //       "{form.name}" created crag with ID: {id}
-  //     </h2>
-  //   );
-  // }
 
   return (
     <>
@@ -106,7 +80,6 @@ export const AddForm = ({ setId, closeForm }: Props) => {
           </label>
           <Input
             className="input"
-            // type="text"
             name="name"
             id="name"
             required
@@ -165,7 +138,6 @@ export const AddForm = ({ setId, closeForm }: Props) => {
             Parking address:{' '}
           </label>
           <Input
-            // type="text"
             name="accomodation"
             id="accomodation"
             maxLength={99}

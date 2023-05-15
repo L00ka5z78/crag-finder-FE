@@ -19,25 +19,23 @@ export const Map = () => {
     useMessageModal();
   const { addFormModalIsOpen, closeAddFormModal } = useAddFormModal();
 
-  // const [crags, setCrags] = useState<SimpleCragEntity[]>([]);
   const [crags, setCrags] = useState<GetCragListResponse>([]);
   const [id, setId] = useState<string>('');
 
   useEffect(() => {
     (async () => {
-      const res = await searchCragResponse(search);
+      const result = await searchCragResponse(search);
 
-      if (res.ok && res.data) {
-        setCrags(res.data);
+      if (result.ok && result.data) {
+        setCrags(result.data);
       } else {
         openMessageModal(
-          res.error ? res.error : 'Unknown error occurred...',
+          result.error ? result.error : 'Unknown error occurred...',
           true
         );
       }
-      // const data = await res.json();
-      // setCrags(data);
     })();
+    // }, [search, id, openMessageModal]); //added 15.5.23 15:10 to get rid of eslint warning
   }, [search, id]);
 
   return (

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Header } from './components/layout/Header/Header';
 import { Map } from './components/layout/Map/Map';
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import {
   AddFormModalContextProvider,
   MessageModalContextProvider,
