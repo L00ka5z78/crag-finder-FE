@@ -1,11 +1,11 @@
 import React, { FormEvent, useContext, useState } from 'react';
 import './Header.css';
 import { Btn } from '../common/index';
-import { SearchContext } from '../../../context/search.context';
+import { useSearch, useAddFormModal } from '../../../context/search.context';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {
-  const { search, setSearch } = useContext(SearchContext);
+  const { search, setSearch } = useSearch();
   const [inputValue, setInputValue] = useState(search);
 
   const setStateFromLocalState = (e: FormEvent) => {

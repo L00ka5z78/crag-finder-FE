@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {Btn} from '../../layout/common'
+import { Btn } from '../../layout/common';
 import { MainModal } from '../MainModal';
 
-import './MessageModal.css'
+import styles from './MessageModal.module.css';
 
 interface Props {
   isOpen: boolean;
@@ -17,11 +17,12 @@ export const MessageModal = ({
   isErrorMessage = false,
 }: Props) => {
   const className = isErrorMessage
-    ? .messageText + ' ' + .messageError
-    : .messageText;
+    ? styles.messageText + ' ' + styles.messageError
+    : styles.messageText;
+
   return (
     <MainModal isOpen={isOpen} onRequestClose={closeModal}>
-      <div className='messageBox'>
+      <div className="messageBox">
         <p className={className}>{message}</p>
         <Btn onClick={closeModal}>Return To Home Page</Btn>
       </div>
