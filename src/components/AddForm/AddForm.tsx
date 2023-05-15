@@ -155,7 +155,7 @@ export const AddForm = ({ setId, closeForm }: Props) => {
           />
         </div>
 
-        <Btn text="Save" />
+        <Btn type="submit">Save</Btn>
       </form>
     </>
   );

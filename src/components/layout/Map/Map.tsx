@@ -6,8 +6,10 @@ import '../../../utils/fix-map-icon';
 import './Map.css';
 import 'leaflet/dist/leaflet.css';
 import { SingleCrag } from '../../SingleCrag/SingleCrag';
-import { useAddFormModal, useMessageModal } from 'src/context';
-import { searchCragResponse } from 'src/utils/cragData';
+import { useAddFormModal, useMessageModal } from '../../../context';
+import { searchCragResponse } from '../../../utils';
+import { AddForm } from '../../AddForm';
+import { MainModal } from '../../modals';
 
 export const Map = () => {
   const { search } = useSearch();
@@ -39,6 +41,10 @@ export const Map = () => {
 
   return (
     <div className="map">
+      <MainModal isOpen={addFormModalIsOpen} onRequestClose={closeAddFormModal}>
+        <AddForm setId={setId} closeForm={closeAddFormModal} />
+      </MainModal>
+
       {/* <h1>Search for: {search}</h1> */}
       <MapContainer center={[50.6311796, 15.260342]} zoom={13}>
         <TileLayer
