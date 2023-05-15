@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export interface AddFormModalContextProps {
+export interface IAddFormModalContextProps {
   addFormModalIsOpen: boolean;
   setAddFormModalIsOpen: (isOpen: boolean) => void;
 }
 
-export interface MessageModalContextProps {
+export interface IMessageModalContextProps {
   messageModal: {
     isOpen: boolean;
     message: string;
@@ -20,7 +20,7 @@ export interface MessageModalContextProps {
   >;
 }
 
-export interface SearchContextProps {
+export interface ISearchContextProps {
   search: string;
   setSearch: (search: string) => void;
 }
