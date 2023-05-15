@@ -1,15 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import { useSearch } from '../../../context/search.context';
 import { GetCragListResponse } from 'types';
-import '../../../utils/fix-map-icon';
-import './Map.css';
 import 'leaflet/dist/leaflet.css';
 import { SingleCrag } from '../../SingleCrag/SingleCrag';
-import { useAddFormModal, useMessageModal } from '../../../context';
 import { searchCragResponse } from '../../../utils';
+import { MainModal, MessageModal } from '../../modals';
 import { AddForm } from '../../AddForm';
-import { MessageModal, MainModal } from '../../modals';
+import { useAddFormModal, useMessageModal } from '../../../context';
+
+import '../../../utils/fix-map-icon';
+import './Map.css';
 
 export const Map = () => {
   const { search } = useSearch();
