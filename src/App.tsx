@@ -8,21 +8,6 @@ import {
   SearchContextProvider,
 } from './context';
 
-// export const App = () => {
-//   const [search, setSearch] = useState('');
-//   return (
-//     <SearchContext.Provider value={{ search, setSearch }}>
-//       <div className="wrapper">
-//         <Header />
-//         <Routes>
-//           <Route path="/" element={<Map />} />
-//           <Route path="/add" element={<AddForm />} />
-//         </Routes>
-//       </div>
-//     </SearchContext.Provider>
-//   );
-// };
-
 export const App = () => {
   return (
     <>

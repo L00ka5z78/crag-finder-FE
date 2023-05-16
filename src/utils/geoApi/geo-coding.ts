@@ -20,7 +20,7 @@ export const geocodeRes = async (
   } catch (error) {
     return {
       ok: false,
-      error: 'Błąd wewnętrzny serwera',
+      error: 'Internal Server Error...',
       status: 500,
     };
   }
