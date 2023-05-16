@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getSingleCragResponse } from 'src/utils';
+import { getSingleCragResponse } from '../../utils';
 import { GetOneCragResponse } from 'types';
 
 interface Props {
@@ -19,7 +19,7 @@ export const SingleCrag = (props: Props) => {
         console.log(result.error ? result.error : 'Unknown error...');
       }
     })();
-  }, []);
+  }, []); // may add props.id to get rid of warning?
 
   if (crag === null) {
     return <p>Loading crags...</p>;

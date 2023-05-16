@@ -14,5 +14,7 @@ export const Btn = ({ children, to, ...rest }: Props) =>
       {children}
     </Link>
   ) : (
-    <button className="button">{children}</button>
+    <button className="button" {...rest}>
+      {children}
+    </button>
   );
