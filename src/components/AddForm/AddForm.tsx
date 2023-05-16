@@ -1,48 +1,63 @@
 import React, { FormEvent, useState } from 'react';
+import { Btn, Input } from '../layout/common';
+import { geocodeRes } from '../../utils/geoApi/geo-coding';
+import { addCragResponse } from '../../utils/cragData/addCragResponse';
+import { useMessageModal } from '../../context';
 
 import './AddForm.css';
-import { Btn } from '../layout/common';
-import { geocode } from '../../utils/geo-coding';
 
-export const AddForm = () => {
+interface Props {
+  setId: React.Dispatch<React.SetStateAction<string>>;
+  closeForm: () => void;
+}
+
+export const AddForm = ({ setId, closeForm }: Props) => {
   const [loading, setLoading] = useState(false);
-  const [id, setId] = useState('');
   const [form, setForm] = useState({
     name: '',
     description: '',
     routes: 0,
     url: '',
-    lat: 0,
-    lon: 0,
     accomodation: '',
   });
+  const { openMessageModal } = useMessageModal();
 
-  const saveCrag = async (event: FormEvent) => {
+  const saveCrag = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
 
-    // console.log({ lat, lon });
     try {
-      const { lat, lon } = await geocode(form.accomodation);
-      const res = await fetch(`http://localhost:3001/crag`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...form,
-          lat,
-          lon,
-        }),
-      });
-      const data = await res.json();
-      setId(data.id);
+      const resultGeocoding = await geocodeRes(form.accomodation);
+
+      if (resultGeocoding.ok && resultGeocoding.data) {
+        const { lat, lon } = resultGeocoding.data;
+        const result = await addCragResponse({ ...form, lat, lon });
+        console.log(result);
+
+        if (result.ok && result.data) {
+          setId(result.data.id);
+          openMessageModal(
+            `Crag ${form.name} has been created and added to our community with ID ${result.data.id}`
+          );
+        } else {
+          openMessageModal(
+            result.error ? result.error : 'Unknown error...',
+            true
+          );
+        }
+      } else {
+        console.log(
+          resultGeocoding.error ? resultGeocoding.error : 'Unknown error...',
+          true
+        );
+      }
     } finally {
       setLoading(false);
+      closeForm();
     }
   };
 
-  const updateForm = (key: string, value: any) => {
+  const updateForm = (key: string, value: string | number) => {
     setForm((form) => ({
       ...form,
       [key]: value,
@@ -52,85 +67,85 @@ export const AddForm = () => {
   if (loading) {
     return <h2>Adding crag to our database...</h2>;
   }
-  if (id) {
-    return (
-      <h2>
-        "{form.name}" created crag with ID: {id}
-      </h2>
-    );
-  }
 
   return (
-    <form className="add-form" onSubmit={saveCrag}>
-      <h1>Add new crag</h1>
-      <p>
-        <label>
-          Name: <br />
-          <input
-            type="text"
+    <>
+      <form className="add-form" onSubmit={saveCrag}>
+        <h1>Add new crag</h1>
+        <div className="formBox">
+          <label className="label" htmlFor="name">
+            Name:
+          </label>
+          <Input
+            className="input"
             name="name"
+            id="name"
             required
             maxLength={99}
             value={form.name}
             onChange={(e) => updateForm('name', e.target.value)}
           />
-        </label>
-      </p>
+        </div>
 
-      <p>
-        <label>
-          Description: <br />
+        <div className="formBox">
+          <label className="label" htmlFor="description">
+            Description:
+          </label>
           <textarea
+            className="textarea"
             name="description"
+            id="description"
             required
             maxLength={999}
             value={form.description}
             onChange={(e) => updateForm('description', e.target.value)}
           />{' '}
-        </label>
-      </p>
-      <p>
-        <label>
-          Routes count: <br />
-          <input
+        </div>
+        <div className="formBox">
+          <label className="label" htmlFor="routes">
+            Routes count:{' '}
+          </label>
+          <Input
             type="number"
             name="routes"
+            id="routes"
             required
             maxLength={99}
             value={form.routes}
             onChange={(e) => updateForm('routes', Number(e.target.value))}
           />
           <small> * Leave zero in that field, if crag has no routes</small>
-        </label>
-      </p>
+        </div>
 
-      <p>
-        <label>
-          Crags URL address (if exists): <br />
-          <input
+        <div className="formBox">
+          <label className="label" htmlFor="url">
+            Crags URL address (if exists):{' '}
+          </label>
+          <Input
             type="url"
             name="url"
+            id="url"
             maxLength={99}
             value={form.url}
             onChange={(e) => updateForm('url', e.target.value)}
           />
-        </label>
-      </p>
+        </div>
 
-      <p>
-        <label>
-          Parking address: <br />
-          <input
-            type="text"
+        <div className="formBox">
+          <label className="label" htmlFor="accomodation">
+            Parking address:{' '}
+          </label>
+          <Input
             name="accomodation"
+            id="accomodation"
             maxLength={99}
             value={form.accomodation}
             onChange={(e) => updateForm('accomodation', e.target.value)}
           />
-        </label>
-      </p>
+        </div>
 
-      <Btn text="Save" />
-    </form>
+        <Btn type="submit">Save</Btn>
+      </form>
+    </>
   );
 };

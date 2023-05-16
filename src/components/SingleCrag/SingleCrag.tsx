@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { CragEntity } from 'types';
+import { getSingleCragResponse } from '../../utils';
+import { GetOneCragResponse } from 'types';
 
 interface Props {
-  id: string | undefined;
+  id: string;
 }
 
 export const SingleCrag = (props: Props) => {
-  const [crag, setCrag] = useState<CragEntity | null>(null);
+  const [crag, setCrag] = useState<GetOneCragResponse | null>(null);
 
   useEffect(() => {
     (async () => {
-      const res = await fetch(`http://localhost:3001/crag/${props.id}`);
-      const data = await res.json();
+      const result = await getSingleCragResponse(props.id);
 
-      setCrag(data);
+      if (result.ok && result.data) {
+        setCrag(result.data);
+      } else {
+        console.log(result.error ? result.error : 'Unknown error...');
+      }
     })();
-  }, []);
+  }, []); // may add props.id to get rid of warning?
 
   if (crag === null) {
     return <p>Loading crags...</p>;
   }
-
-  //   return <h4>{crag.name}</h4>;
 
   return (
     <>

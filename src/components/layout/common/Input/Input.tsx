@@ -3,4 +3,6 @@ import './Input.css';
 
 type Props = React.InputHTMLAttributes<HTMLInputElement>;
 
-export const Input = ({ ...rest }: Props) => <input {...rest} />;
+export const Input = ({ ...rest }: Props) => (
+  <input className="input" {...rest} />
+);

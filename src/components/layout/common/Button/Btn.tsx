@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import './Btn.css';
 import { Link } from 'react-router-dom';
 
-interface Props {
-  text: string;
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  // text: string;
+  children: ReactNode;
   to?: string;
 }
 
-export const Btn = (props: Props) =>
-  props.to ? (
-    <Link className="btn" to={props.to}>
-      {props.text}
+export const Btn = ({ children, to, ...rest }: Props) =>
+  to ? (
+    <Link className="btn" to={to}>
+      {children}
     </Link>
   ) : (
-    <button>{props.text}</button>
+    <button className="button" {...rest}>
+      {children}
+    </button>
   );

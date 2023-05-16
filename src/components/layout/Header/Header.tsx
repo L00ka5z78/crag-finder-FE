@@ -1,14 +1,14 @@
-import React, { FormEvent, useContext, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import './Header.css';
-import { Btn } from '../common/index';
-import { SearchContext } from '../../../context/search.context';
-import { Link } from 'react-router-dom';
+import { Btn, Input } from '../common/index';
+import { useSearch, useAddFormModal } from '../../../context';
 
 export const Header = () => {
-  const { search, setSearch } = useContext(SearchContext);
+  const { search, setSearch } = useSearch();
+  const { openAddForm } = useAddFormModal();
   const [inputValue, setInputValue] = useState(search);
 
-  const setStateFromLocalState = (e: FormEvent) => {
+  const setStateFromLocalState = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearch(inputValue);
   };
@@ -16,18 +16,16 @@ export const Header = () => {
   return (
     <header>
       <h1>
-        <Link className="link" to={'/'}>
-          <strong>CRAG</strong> finder
-        </Link>
+        <strong>CRAG </strong>finder
       </h1>
-      <Btn to="/add" text="Add New Crag" />
+      <Btn onClick={openAddForm}>Add New Crag</Btn>
       <form className="search" onSubmit={setStateFromLocalState}>
-        <input
+        <Input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-        />
-        <Btn text="Search for crags" />
+        />{' '}
+        <Btn>Search for crags</Btn>
       </form>
     </header>
   );
