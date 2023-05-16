@@ -106,6 +106,7 @@ export const AddForm = ({ setId, closeForm }: Props) => {
             Routes count:{' '}
           </label>
           <Input
+            className="input"
             type="number"
             name="routes"
             id="routes"
@@ -122,6 +123,7 @@ export const AddForm = ({ setId, closeForm }: Props) => {
             Crags URL address (if exists):{' '}
           </label>
           <Input
+            className="input"
             type="url"
             name="url"
             id="url"
@@ -136,6 +138,7 @@ export const AddForm = ({ setId, closeForm }: Props) => {
             Parking address:{' '}
           </label>
           <Input
+            className="input"
             name="accomodation"
             id="accomodation"
             maxLength={99}

@@ -2,11 +2,12 @@
   background: green;
   /* height: calc(100% - 48px); */
   height: 100%;
+  z-index: 0;
 }
-.leaflet-container {
-  /* height: 100%; */
-  height: calc(100% - 38px);
-}
+/* .leaflet-container { */
+/* height: 100%; */
+/* height: calc(100% - 38px);
+} */
 .leafletContainer {
   height: 100%;
 }
