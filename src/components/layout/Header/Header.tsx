@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import './Header.css';
 import { Btn, Input } from '../common/index';
 import { useSearch, useAddFormModal } from '../../../context';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   const { search, setSearch } = useSearch();
@@ -16,8 +17,11 @@ export const Header = () => {
   return (
     <header>
       <h1>
-        <strong>CRAG </strong>finder
+        <Link className="link" to={'/'}>
+          <strong>CRAG</strong> finder
+        </Link>
       </h1>
+
       <Btn onClick={openAddForm}>Add New Crag</Btn>
       <form className="search" onSubmit={setStateFromLocalState}>
         <Input
