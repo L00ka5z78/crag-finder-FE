@@ -1,10 +1,10 @@
 import React, { FormEvent, useState } from 'react';
-
-import './AddForm.css';
 import { Btn, Input } from '../layout/common';
 import { geocodeRes } from '../../utils/geoApi/geo-coding';
 import { addCragResponse } from '../../utils/cragData/addCragResponse';
 import { useMessageModal } from '../../context';
+
+import './AddForm.css';
 
 interface Props {
   setId: React.Dispatch<React.SetStateAction<string>>;
@@ -18,8 +18,6 @@ export const AddForm = ({ setId, closeForm }: Props) => {
     description: '',
     routes: 0,
     url: '',
-    lat: 0,
-    lon: 0,
     accomodation: '',
   });
   const { openMessageModal } = useMessageModal();
