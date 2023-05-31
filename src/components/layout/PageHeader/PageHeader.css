@@ -1,0 +1,20 @@
+.sectionTitle {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: 4rem;
+  font-weight: normal;
+}
+
+.accountInfo {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.link {
+  text-decoration: underline;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
