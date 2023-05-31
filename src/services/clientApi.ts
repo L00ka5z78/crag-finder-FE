@@ -22,18 +22,6 @@ class ClientApi {
     });
   }
 
-  post = <RequestT, ResponseT>(
-    endpointConfig: WriteEndpoint,
-    data: RequestT,
-    params?: RequestT
-  ): Promise<AxiosResponse<ResponseT>> => {
-    const { url, method } = endpointConfig;
-
-    return this.instance.post(url, data, {
-      params,
-    });
-  };
-
   get = <RequestT, ResponseT>(
     endpointConfig: ReadEndpoint,
     params?: RequestT
@@ -42,6 +30,18 @@ class ClientApi {
     const { url } = endpointConfig;
 
     return this.instance.get(url, {
+      params,
+    });
+  };
+
+  post = <RequestT, ResponseT>(
+    endpointConfig: WriteEndpoint,
+    data?: RequestT,
+    params?: RequestT
+  ): Promise<AxiosResponse<ResponseT>> => {
+    const { url, method } = endpointConfig;
+
+    return this.instance.post(url, data, {
       params,
     });
   };
