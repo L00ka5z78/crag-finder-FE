@@ -1,1 +1,2 @@
-export * from './';
+export * from './Routes';
+export * from './endpoints';
