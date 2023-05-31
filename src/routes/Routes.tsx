@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { userRoutes } from './endpoints';
+import { Home } from 'src/components/user-features';
 
 export const AppRoutes = () => {
   return (
