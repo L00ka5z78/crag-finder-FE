@@ -1,0 +1,15 @@
+.formBox {
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(25rem, 50%, 60rem);
+  padding: 3rem;
+  background-color: var(--grey-bgc);
+  -webkit-box-shadow: inset 33px 36px 83px -30px rgba(255, 255, 255, 0.26);
+  -moz-box-shadow: inset 33px 36px 83px -30px rgba(255, 255, 255, 0.26);
+  box-shadow: inset 33px 36px 83px -30px rgba(255, 255, 255, 0.26);
+  border: none;
+  border-radius: 0.5rem;
+}
