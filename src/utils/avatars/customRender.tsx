@@ -1,6 +1,7 @@
 import React, { FC, PropsWithChildren, ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { TranslationProvider } from '../../services';
 
 const Providers: FC<PropsWithChildren<unknown>> = ({ children }) => {
   return (
