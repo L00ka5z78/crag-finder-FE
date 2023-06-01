@@ -17,8 +17,8 @@ const AuthContext = createContext<{
   dispatch: () => null,
 });
 
-export const AuthProvider: React.FC<Props> = ({ children }) => {};
+export const AuthProvider: React.FC<Props> = ({ children }) => {
+  const [state, dispatch] = useReducer(authReducer, initialState);
+};
 
 export default AuthContext;
-
-//no idea how to deal with so many details..
