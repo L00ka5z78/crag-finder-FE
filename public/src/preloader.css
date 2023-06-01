@@ -1,0 +1,39 @@
+:root {
+  --loader-track-color: #151515;
+  --loader-thumb-color: #6609c4;
+  --page-loader-backdrop: #1f1f1f;
+  --component-loader-backdrop: rgba(0, 0, 0, 0.4);
+}
+
+.preloader-backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #1f1f1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.preloader-loader {
+  width: clamp(100px, 20vw, 250px);
+  border-width: clamp(10px, 20vw, 23px);
+}
+.preloader-dark-loader-style {
+  border-radius: 100%;
+  background: transparent;
+  aspect-ratio: 1;
+  border-color: var(--loader-track-color);
+  border-top-color: var(--loader-thumb-color);
+  border-style: solid;
+  display: flex;
+  animation: 1s preloader-loader-animation infinite forwards ease-in-out;
+}
+
+@keyframes preloader-loader-animation {
+  100% {
+    rotate: 360deg;
+  }
+}
