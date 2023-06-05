@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import './LoadingSpinner.css';
+import './Spinner.css';
 
 interface Props {
   isLoadingPage?: boolean;

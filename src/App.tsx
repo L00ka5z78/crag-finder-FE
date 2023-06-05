@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import AuthContext from './context/auth/authContext';
+import { AppRoutes } from './routes';
+import { getUserWithCookie } from './context';
+import { TranslationProvider } from './services';
+
 import { Header } from './components/layout/Header/Header';
 import { Map } from './components/layout/Map/Map';
 import { Outlet } from 'react-router-dom';
@@ -7,8 +12,29 @@ import {
   MessageModalContextProvider,
   SearchContextProvider,
 } from './context';
+import LoadingSpinner from './components/layout/Spinner/Spinner';
 
 export const App = () => {
+  const { state: authState, dispatch } = useContext(AuthContext);
+
+  useEffect(() => {
+    (async () => {
+      dispatch({ type: 'SET_LOADING' });
+
+      const user = await getUserWithCookie();
+
+      if (user) {
+        dispatch({ type: 'SET_USER', payload: user });
+      } else {
+        dispatch({ type: 'RESET_USER' });
+      }
+
+      dispatch({ type: 'CLEAR_LOADING' });
+    })();
+  }, [dispatch]);
+
+  if (authState.isLoading) return <LoadingSpinner isLoadingPage={true} />;
+
   return (
     <>
       <MessageModalContextProvider>
@@ -24,6 +50,11 @@ export const App = () => {
           </AddFormModalContextProvider>
         </SearchContextProvider>
       </MessageModalContextProvider>
+
+      <TranslationProvider>
+        <AppRoutes />
+      </TranslationProvider>
     </>
   );
 };
+/** trying to combine and connect both features. no success yet. bunch of errors */
