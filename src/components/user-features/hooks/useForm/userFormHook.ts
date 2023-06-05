@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Validate } from './validate';
+import { ChangeEvent, FormEvent, FormEventHandler, useState } from 'react';
+import { Validate, validate } from './validate';
 
 const setInitialErrors = <T extends Record<string, string>>(
   initialFormState: T
@@ -38,5 +38,66 @@ export const useFormHook = <T extends Record<string, string>>(
     };
   };
 
-  return null; // temporary
+  const updateValue = (event: ChangeEvent<HTMLInputElement>) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    setForm((prev) => ({ ...prev, [name]: value }));
+
+    // Validate field on the fly while user writes text
+    if (formValidators[name]) {
+      const defaultMessage = validate(value, formValidators[name]);
+
+      if (defaultMessage) {
+        setErrors((prev) => ({
+          ...prev,
+          [name]: errorMessages?.[name] ?? defaultMessage,
+        }));
+      } else {
+        setErrors((prev) => {
+          const newErrors = { ...prev };
+          delete newErrors[name];
+          return newErrors;
+        });
+      }
+    }
+  };
+
+  const submitForm =
+    (userSubmit: FormEventHandler<HTMLFormElement>) =>
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+
+      let error = false;
+
+      // Check for errors on the form
+      for (const name of Object.keys(form)) {
+        if (formValidators[name]) {
+          const defaultMessage = validate(form[name], formValidators[name]);
+
+          if (defaultMessage) {
+            setErrors((prev) => ({
+              ...prev,
+              [name]: errorMessages?.[name] ?? defaultMessage,
+            }));
+            error = true;
+          } else {
+            setErrors((prev) => {
+              const newErrors = { ...prev };
+              delete newErrors[name];
+              return newErrors;
+            });
+          }
+        }
+      }
+
+      if (error) {
+        setIsError(true);
+      } else {
+        setIsError(false);
+        userSubmit(event);
+      }
+    };
+
+  return { isError, errors, tag, updateValue, form, submitForm };
 };
