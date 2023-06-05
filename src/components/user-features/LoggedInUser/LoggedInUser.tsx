@@ -3,6 +3,8 @@ import { UserRole } from './user-role';
 import AuthContext from '../../../context/auth/authContext';
 import { UserHeader } from '../../../components/layout';
 
+import './LoggedInUser.css';
+
 export const LoggedInUser = () => {
   //Context
   const { state: authState } = useContext(AuthContext);
