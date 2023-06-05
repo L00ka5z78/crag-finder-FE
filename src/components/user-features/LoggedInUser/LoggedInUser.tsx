@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { UserRole } from './user-role';
-// import AuthContext from "src/context/auth/authContext";
+import AuthContext from '../../../context/auth/authContext';
+import { UserHeader } from '../../../components/layout';
 
 export const LoggedInUser = () => {
   //Context
@@ -9,10 +10,10 @@ export const LoggedInUser = () => {
 
   if (user && user.id) {
     return (
-      <HeaderUser id={user.id} email={user.email} role={UserRole[user.role]} />
+      <UserHeader id={user.id} email={user.email} role={UserRole[user.role]} />
     );
   } else {
-    //@TODO implementacjia wylogowania
+    //@TODO logout feature
     return <h1>Todo LogOut</h1>;
   }
 };
