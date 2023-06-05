@@ -1,15 +1,15 @@
 export const messages = {
   welcome: {
     id: 'welcome',
-    defaultMessage: 'Witaj ',
+    defaultMessage: 'Welcome ',
   },
   yourId: {
     id: 'yourId',
-    defaultMessage: 'Twoje ID: ',
+    defaultMessage: 'Your ID: ',
   },
   yourRole: {
     id: 'yourRole',
-    defaultMessage: 'Twoja rola: ',
+    defaultMessage: 'Assigned role: ',
   },
 
   pageHeader: {
