@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useIntl } from "react-intl";
-import LoadingSpinner from '../../../components/layout/Spinner/Spinner'
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
+import LoadingSpinner from '../../../components/layout/Spinner/Spinner';
 
-import { messages } from "./messages";
+import { messages } from './messages';
 
 type SignUpForm = {
   email: string;
@@ -11,16 +11,13 @@ type SignUpForm = {
 };
 
 export const SignUp = () => {
-    const { formatMessage } = useIntl();
+  const { formatMessage } = useIntl();
 
-      // Local state and hooks
+  // Local state and hooks
   const [loading, setLoading] = useState<boolean>(false);
-
-
 
   if (loading) {
     return <LoadingSpinner />;
   }
-  return ()
-
+  return null; //temporary
 };
