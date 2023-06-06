@@ -57,4 +57,7 @@ export const App = () => {
     </>
   );
 };
-/** trying to combine and connect both features. no success yet. bunch of errors */
+/** trying to combine and connect both features. no success yet. bunch of errors
+ *
+ *  cannot render a <Router> inside another <Router>. You should never have more than one in your app 06.06 09:31
+ */
