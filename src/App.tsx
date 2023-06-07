@@ -59,5 +59,5 @@ export const App = () => {
 };
 /** trying to combine and connect both features. no success yet. bunch of errors
  *
- *  cannot render a <Router> inside another <Router>. You should never have more than one in your app 06.06 09:31
+ *  cannot render a <Router> inside another <Router>. You should never have more than one in your app 06.06 09:31 problem occurs because it was duplicate router in routes,tsx file and index.ts. now its fixed, but error is still there 07.06 08:38
  */
