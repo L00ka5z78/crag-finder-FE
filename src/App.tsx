@@ -51,9 +51,9 @@ export const App = () => {
         </SearchContextProvider>
       </MessageModalContextProvider>
 
-      {/* <TranslationProvider>
+      <TranslationProvider>
         <AppRoutes />
-      </TranslationProvider> */}
+      </TranslationProvider>
     </>
   );
 };
