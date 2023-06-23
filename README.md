@@ -17,13 +17,13 @@ I got stuck in one place and cant move forward without fixing this. So if you ar
 bugs, so thats right. They exist :) But hopefully I will fix them soon, as daily life, and other challenges allows me .
 
 ## Tech stack used in project
-* react
-* react router dom
-* typescript
-* react leatflet
-* jest
-* cypress
-* axios
+- react
+- react router dom
+- typescript
+- react leatflet
+- jest
+- cypress
+- axios
 
 Backend and frontend is connecte with help of react-app rewired
 
