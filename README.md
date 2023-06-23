@@ -29,13 +29,13 @@ Backend and frontend is connecte with help of react-app rewired
 
 ## Available Scripts
 
-  "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject",
-    "test:coverage": "npm test -- --coverage",
-    "test:e2e:run": "cypress run",
-    "cypress:open": "cypress open"
+  - "start": "react-app-rewired start",
+   - "build": "react-app-rewired build",
+   - "test": "react-app-rewired test",
+   - "eject": "react-scripts eject",
+   - "test:coverage": "npm test -- --coverage",
+   - "test:e2e:run": "cypress run",
+   - "cypress:open": "cypress open"
 
 ### execute npm start in terminal to start
 
