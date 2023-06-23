@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+# Crag finder Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Project still in progress (22.06.23)
+
+this is a frontend to crg finder application. This is a app, where you can add new, update abd delete exisiting crags. 
+And of course display crags by chosen keys.
+
+### Backend to this project is available at:
+https://github.com/L00ka5z78/crag-finder-BE
+
+### Some thoughts
+I think that backend to this app is actually done and works well. There are some small features which
+I would like to add, but in my opinion it it not needed (like swagger docs).
+
+Frontend is also written in general, but there are few issues I'm facing this days (22.06.23). And this is connection FE with BE.
+I got stuck in one place and cant move forward without fixing this. So if you are checking this project and see some
+bugs, so thats right. They exist :) But hopefully I will fix them soon, as daily life, and other challenges allows me .
+
+## Tech stack used in project
+* react
+* react router dom
+* typescript
+* react leatflet
+* jest
+* cypress
+* axios
+
+Backend and frontend is connecte with help of react-app rewired
 
 ## Available Scripts
 
-In the project directory, you can run:
+  "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject",
+    "test:coverage": "npm test -- --coverage",
+    "test:e2e:run": "cypress run",
+    "cypress:open": "cypress open"
 
-### `npm start`
+### execute npm start in terminal to start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
