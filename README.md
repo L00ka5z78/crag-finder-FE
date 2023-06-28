@@ -12,6 +12,8 @@ https://github.com/L00ka5z78/crag-finder-BE
 I think that backend to this app is actually done and works well. There are some small features which
 I would like to add, but in my opinion it it not needed (like swagger docs).
 
+#### Main features are merged to develop branch, not to the main 
+
 Frontend is also written in general, but there are few issues I'm facing this days (22.06.23). And this is connection FE with BE.
 I got stuck in one place and cant move forward without fixing this. So if you are checking this project and see some
 bugs, so thats right. They exist :) But hopefully I will fix them soon, as daily life, and other challenges allows me .
